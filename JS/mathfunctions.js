@@ -52,6 +52,6 @@ function CalcExponentialSmoothingValue(currentvalue, lastforecastvalue, alpha) {
     return (parseFloat(lastforecastvalue) + parseFloat(alpha) * (parseFloat(currentvalue) - parseFloat(lastforecastvalue)));
 }
 
-function CalcExpSmoothingValue(a, b, x) {
+function CalcMESValue(a, b, x) {
     return (parseFloat(b) * parseFloat(x) + parseFloat(a));
 }
