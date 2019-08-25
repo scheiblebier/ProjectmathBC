@@ -14,10 +14,8 @@ function GetCoVariance(x, y) {
     for (let i = 0; i < x.length; i++) {
         xy[i] = x[i] * y[i];
     }
-
     return (math.mean(xy) - math.mean(x) * math.mean(y));
 }
-
 
 function CalcMESCoefficients(x, y) {
     let values = [];
@@ -26,7 +24,6 @@ function CalcMESCoefficients(x, y) {
     values[0] = math.mean(y) - values[1] * math.mean(x); //a
 
     return values;
-
 }
 
 function CalcDoubleExponentialSmoothing(x, y, alpha) {
@@ -40,20 +37,15 @@ function CalcDoubleExponentialSmoothing(x, y, alpha) {
     for (let i = 0; i <= y.length; i++) {
         if (i == 0) {
             values_once[i] = MSEValues[0] - MSEValues[1] * ((1 - alpha) / alpha);
-
             values_twice[i] = MSEValues[0] - 2 * MSEValues[1] * ((1 - alpha) / alpha);
             values_forecast[i] = CalcExpSmoothingValue(MSEValues[0], MSEValues[1], 0);
-
         } else {
             values_once[i] = CalcExponentialSmoothingValue(y[i - 1], values_once[i - 1], alpha);
             values_twice[i] = CalcExponentialSmoothingValue(values_once[i], values_twice[i - 1], alpha);
             values_forecast[i] = 2 * values_once[i] - values_twice[i] + (alpha / (1 - alpha)) * (values_once[i] - values_twice[i]);
         }
-
     }
-
     return values_forecast;
-
 }
 
 function CalcExponentialSmoothingValue(currentvalue, lastforecastvalue, alpha) {

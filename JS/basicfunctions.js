@@ -12,13 +12,10 @@ function NewMatrixFromJSON(JsonString) {
         let currentRow;
         let currentColumn;
 
-
         currentRow = JsonObject[i]["Row"];
         currentColumn = JsonObject[i]["Column"];
         array[parseInt(currentRow) - 1][parseInt(currentColumn) - 1] = JsonObject[i]["Value"];
-
     }
-
     return array
 }
 
@@ -40,20 +37,18 @@ function CreateEmptyMatrixFromJson(JsonString) {
         if (currentRow > maxRows) {
             maxRows = currentRow;
         }
-
     }
     array = NewMatrix(maxRows, maxColumns);
     return array;
 }
 
-function NewMatrix(Columns, Rows) {
+function NewMatrix(Rows, Columns) {
     let array = new Array(Columns);
     for (let i = 0; i < Rows; i++) {
         array[i] = new Array(Rows);
     }
     return array;
 }
-
 
 function read(input) {
     const csv = input.files[0];
@@ -64,7 +59,6 @@ reader.onload = function (e) {
     //	document.querySelector('.output').innerText = e.target.result;
 }
 reader.onloadend = function (e) {
-
     Data = StringToArray(reader.result, 1, "\n");
 }
 
@@ -76,7 +70,6 @@ function StringToArray(result, StartingRow, Delimiter) {
     let TempString = "";
     let StartRow = StartingRow;
     while (input != "") {
-
         Delimiterindex = input.indexOf(Delimiter);
         if (Delimiterindex >= 0) {
             if (RowCounter >= StartRow) {
@@ -99,7 +92,6 @@ function StringToArray(result, StartingRow, Delimiter) {
 
             input = "";
         }
-
     }
     return DataArray;
 }
@@ -125,12 +117,10 @@ function printChart() {
     for (let i = 0; i < yValues.length; i++) {
         if (i == 0) {
             MSEyValues[i] = MSEParameters[0];
-
         } else {
             MSEyValues[i] = MSEParameters[0] + MSEParameters[1] * tempxValue[i];
         }
     }
-
     ExponentialSmoothing1 = CalcDoubleExponentialSmoothing(tempxValue, yValues, 0.1);
 
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -144,7 +134,7 @@ function printChart() {
                     borderColor: "#3e95cd",
                     fill: false,
                     pointRadius: "3",
-                    pointBackgroundColor:"#3e95cd"
+                    pointBackgroundColor: "#3e95cd"
 
                 },
                 {

@@ -1,3 +1,5 @@
+//Used for testing purposed (JSON Array from BC)
+
 var data = [{
         "Row": "1",
         "Column": "1",
